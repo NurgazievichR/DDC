@@ -17,6 +17,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(CashFlow)
 class CashFlowAdmin(admin.ModelAdmin):
     list_display = ('created_at', 'amount', 'status', 'subcategory', 'category', 'type', 'comment')
+    exclude = ['user']
     list_filter = (
         'status',
         'subcategory__category__type',
@@ -38,3 +39,8 @@ class CashFlowAdmin(admin.ModelAdmin):
 
     def type(self, obj):
         return obj.subcategory.category.type.title
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            obj.user = request.user
+        super().save_model(request, obj, form, change)

@@ -3,8 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
+from app.models import CashFlow
+
 @login_required
 def index(request):
+    user_cashflows = CashFlow.objects.filter(user=request.user)
     return render(request, 'app/index.html')
 
 def register(request):
