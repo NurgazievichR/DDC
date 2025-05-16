@@ -18,10 +18,10 @@ class CategoryAdmin(admin.ModelAdmin):
 class CashFlowAdmin(admin.ModelAdmin):
     list_display = ('created_at', 'amount', 'status', 'subcategory', 'category', 'type', 'comment')
     list_filter = (
-        ('status'),
-        ('subcategory__category__type'),
-        ('subcategory__category'),
-        ('subcategory'),
+        'status',
+        'subcategory__category__type',
+        'subcategory__category',
+        'subcategory',
         ('created_at', DateRangeFilter),
     )
     search_fields = (

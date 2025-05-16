@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}CashFlow{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+</head>
+<body>
+
+    {% include 'app/header.html' %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
