@@ -15,6 +15,7 @@ class Type(models.Model):
     
 class Category(models.Model):
     title = models.CharField(max_length=50, unique=True)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE, related_name='categories')
 
     def __str__(self):
         return self.title
@@ -31,7 +32,6 @@ class Subcategory(models.Model):
     
 class CashFlow(models.Model):
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
-    type = models.ForeignKey(Type, on_delete=models.PROTECT)
     subcategory = models.ForeignKey(Subcategory, on_delete=models.PROTECT)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     comment = models.TextField(blank=True)
