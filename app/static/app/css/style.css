@@ -13,27 +13,9 @@ body {
     align-items: center;
 }
 
-.nav-buttons a {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
-    padding: 6px 12px;
-    border: 1px solid white;
-    border-radius: 5px;
-    transition: background 0.2s;
-}
-
-.nav-buttons a:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.nav-buttons form {
-    display: inline;
-}
-
+.nav-buttons a,
 .nav-buttons .nav-button {
     color: white;
-    background: none;
     text-decoration: none;
     margin-left: 15px;
     padding: 6px 12px;
@@ -42,86 +24,162 @@ body {
     transition: background 0.2s;
     font: inherit;
     cursor: pointer;
+    background: none;
 }
 
+.nav-buttons a:hover,
 .nav-buttons .nav-button:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-buttons form {
+    display: inline;
 }
 
 main {
     padding: 20px;
 }
 
-.login-container {
-    max-width: 400px;
-    margin: 100px auto;
+/* Общие контейнеры для форм */
+.login-container,
+.add-container {
+    max-width: 500px;
+    margin: 80px auto 40px auto;
     padding: 30px;
     background-color: white;
-    border: 1px solid #ddd;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     font-family: Arial, sans-serif;
 }
 
-.login-container h2 {
+.login-container h2,
+.add-container h2 {
     text-align: center;
     margin-bottom: 25px;
     font-size: 24px;
+    color: #3f0071;
+    font-weight: 700;
 }
 
-.login-container form > div {
-    margin-bottom: 15px;
+.login-container form > div,
+.add-container form > div,
+.add-container form > p {
+    margin-bottom: 18px;
 }
 
-.login-container label {
+.login-container label,
+.add-container label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
 }
 
 .login-container input[type="text"],
-.login-container input[type="password"] {
+.login-container input[type="password"],
+.add-container input[type="text"],
+.add-container input[type="number"],
+.add-container select,
+.add-container textarea {
     width: 100%;
-    padding: 10px;
-    border-radius: 6px;
+    padding: 10px 12px;
     border: 1px solid #ccc;
+    border-radius: 6px;
     box-sizing: border-box;
-    transition: border 0.3s;
+    font-size: 15px;
+    transition: border-color 0.3s;
 }
 
-.login-container input:focus {
+.login-container input:focus,
+.add-container input:focus,
+.add-container select:focus,
+.add-container textarea:focus {
     border-color: #6c63ff;
     outline: none;
 }
 
-.login-container button {
+.login-container button,
+.add-container button {
     width: 100%;
-    padding: 12px;
-    background-color: #3f0071;
+    padding: 14px;
+    background-color: #6c63ff;
     color: white;
     border: none;
-    border-radius: 6px;
-    font-weight: bold;
+    border-radius: 8px;
+    font-weight: 700;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background-color 0.3s;
 }
 
-.login-container button:hover {
-    background-color: #532ba0;
+.login-container button:hover,
+.add-container button:hover {
+    background-color: #4e49b8;
 }
 
-.login-container p {
+.login-container p,
+.add-container p {
     text-align: center;
     margin-top: 15px;
     font-size: 14px;
 }
 
-.login-container a {
+.login-container a,
+.add-container a {
     color: #6c63ff;
     text-decoration: none;
 }
 
-.login-container a:hover {
+.login-container a:hover,
+.add-container a:hover {
     text-decoration: underline;
+}
+
+/* Таблица записей */
+.cashflow-list {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.cashflow-list h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.cashflow-list table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 14px;
+}
+
+.cashflow-list th,
+.cashflow-list td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cashflow-list th:not(:last-child),
+.cashflow-list td:not(:last-child) {
+    width: 120px;
+}
+
+.cashflow-list th:last-child,
+.cashflow-list td:last-child {
+    width: auto;
+    white-space: normal;
+}
+
+.cashflow-list tr:nth-child(even) {
+    background-color: #f9f9f9;
 }

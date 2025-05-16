@@ -1,8 +1,39 @@
 {% extends 'app/base.html' %}
+{% load static %}
 
 {% block title %}Главная - CashFlow{% endblock %}
 
 {% block content %}
-    <h2>Добро пожаловать!</h2>
-    <p>Здесь будет таблица финансов и кнопки.</p>
+<div class="cashflow-list">
+    <h2>Ваши финансовые записи</h2>
+
+    {% if cashflows %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Категория</th>
+                    <th>Подкатегория</th>
+                    <th>Статус</th>
+                    <th>Сумма</th>
+                    <th>Комментарий</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cashflows %}
+                <tr>
+                    <td>{{ item.created_at }}</td>
+                    <td>{{ item.subcategory.category.title }}</td>
+                    <td>{{ item.subcategory.title }}</td>
+                    <td>{{ item.status.title }}</td>
+                    <td>{{ item.amount }} ₽</td>
+                    <td>{{ item.comment }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>У вас пока нет записей.</p>
+    {% endif %}
+</div>
 {% endblock %}
