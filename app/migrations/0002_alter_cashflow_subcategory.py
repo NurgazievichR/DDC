@@ -7,13 +7,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0001_initial'),
+        ("app", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cashflow',
-            name='subcategory',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='cashflows', to='app.subcategory'),
+            model_name="cashflow",
+            name="subcategory",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="cashflows",
+                to="app.subcategory",
+            ),
         ),
     ]
