@@ -183,3 +183,62 @@ main {
 .cashflow-list tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+.filters {
+    max-width: 900px;
+    margin: 20px auto 0 auto;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.filters label {
+    font-weight: 600;
+    color: #333;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+.filters select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    min-width: 160px;
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+
+.filters select:focus {
+    border-color: #6c63ff;
+    outline: none;
+}
+
+.filters label,
+.filters select {
+    display: inline-block;
+}
+
+.filters label + select {
+    margin-right: 20px;
+}
+
+@media (max-width: 600px) {
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filters label + select {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+        min-width: auto;
+    }
+}

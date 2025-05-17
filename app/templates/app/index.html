@@ -4,6 +4,42 @@
 {% block title %}Главная - CashFlow{% endblock %}
 
 {% block content %}
+<div class="filters">
+    <form method="get" id="filters-form">
+        <label for="type-select">Тип:</label>
+        <select name="type" id="type-select" onchange="document.getElementById('filters-form').submit()">
+            <option value="all" {% if selected_type_id == 'all' %}selected{% endif %}>Все типы</option>
+            {% for type in types %}
+                <option value="{{ type.id }}" {% if selected_type_id|default:'all' == type.id|stringformat:"s" %}selected{% endif %}>{{ type.title }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="category-select">Категория:</label>
+        <select name="category" id="category-select" onchange="document.getElementById('filters-form').submit()">
+            <option value="all" {% if selected_category_id == 'all' %}selected{% endif %}>Все категории</option>
+            {% for category in categories %}
+                <option value="{{ category.id }}" {% if selected_category_id|default:'all' == category.id|stringformat:"s" %}selected{% endif %}>{{ category.title }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="subcategory-select">Подкатегория:</label>
+        <select name="subcategory" id="subcategory-select" onchange="document.getElementById('filters-form').submit()">
+            <option value="all" {% if selected_subcategory_id == 'all' %}selected{% endif %}>Все подкатегории</option>
+            {% for subcategory in subcategories %}
+                <option value="{{ subcategory.id }}" {% if selected_subcategory_id|default:'all' == subcategory.id|stringformat:"s" %}selected{% endif %}>{{ subcategory.title }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="status-select">Статус:</label>
+        <select name="status" id="status-select" onchange="document.getElementById('filters-form').submit()">
+            <option value="all" {% if selected_status_id == 'all' %}selected{% endif %}>Все статусы</option>
+            {% for status in statuses %}
+                <option value="{{ status.id }}" {% if selected_status_id|default:'all' == status.id|stringformat:"s" %}selected{% endif %}>{{ status.title }}</option>
+            {% endfor %}
+        </select>
+    </form>
+</div>
+
 <div class="cashflow-list">
     <h2>Ваши финансовые записи</h2>
 
