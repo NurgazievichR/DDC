@@ -53,6 +53,7 @@
                     <th>Статус</th>
                     <th>Сумма</th>
                     <th>Комментарий</th>
+                    <th>Детали</th> 
                 </tr>
             </thead>
             <tbody>
@@ -64,6 +65,7 @@
                     <td>{{ item.status.title }}</td>
                     <td>{{ item.amount }} ₽</td>
                     <td>{{ item.comment }}</td>
+                    <td><a href="{{ item.get_absolute_url }}">Подробнее</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

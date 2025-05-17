@@ -1,5 +1,7 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
+
 
 class Status(models.Model):
     title = models.CharField(max_length=50, unique=True)
@@ -40,3 +42,7 @@ class CashFlow(models.Model):
 
     def __str__(self):
         return f"{self.created_at} - {self.amount} руб."
+    
+
+    def get_absolute_url(self):
+        return reverse('cashflow_detail', kwargs={'pk': self.pk})

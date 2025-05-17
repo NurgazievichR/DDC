@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -79,3 +79,37 @@ def add_cashflow(request):
     else:
         form = CashFlowForm()
     return render(request, 'app/add.html', {'form': form})
+
+@login_required
+def cashflow_detail(request, pk):
+    cashflow = get_object_or_404(CashFlow, pk=pk, user=request.user)
+    return render(request, 'app/cashflow_detail.html', {'cashflow': cashflow})
+
+
+@login_required
+def cashflow_edit(request, pk):
+    cashflow = get_object_or_404(CashFlow, pk=pk, user=request.user)
+    subcategories = Subcategory.objects.filter(category=cashflow.subcategory.category)
+    statuses = Status.objects.all()
+
+    if request.method == "POST":
+        cashflow.subcategory_id = request.POST.get('subcategory')
+        cashflow.status_id = request.POST.get('status')
+        cashflow.amount = request.POST.get('amount')
+        cashflow.comment = request.POST.get('comment')
+        cashflow.save()
+        return redirect('cashflow_detail', pk=cashflow.pk)
+
+    form_initial = {
+        'subcategory': cashflow.subcategory.id,
+        'status': cashflow.status.id,
+        'amount': cashflow.amount,
+        'comment': cashflow.comment,
+        'created_at': cashflow.created_at,
+    }
+    return render(request, 'app/cashflow_edit.html', {
+        'cashflow': cashflow,
+        'subcategories': subcategories,
+        'statuses': statuses,
+        'form': form_initial,
+    })
