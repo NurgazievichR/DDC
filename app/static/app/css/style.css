@@ -135,13 +135,12 @@ main {
     text-decoration: underline;
 }
 
-/* Таблица записей и фильтры — увеличенный контейнер */
 .cashflow-list,
 .filters {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 40px auto 0 auto;
     background: white;
-    padding: 20px;
+    padding: 30px; 
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
@@ -149,7 +148,7 @@ main {
 @media (min-width: 1400px) {
     .cashflow-list,
     .filters {
-        max-width: 1400px;
+        max-width: 1700px; 
     }
 }
 
@@ -494,5 +493,59 @@ main {
     .form-buttons a {
         width: 100%;
         flex: none;
+    }
+}
+
+.filters input[type="date"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    min-width: 160px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    font-family: Arial, sans-serif;
+}
+
+.filters input[type="date"]:focus {
+    border-color: #6c63ff;
+    outline: none;
+}
+
+.filters label[for="date-from"],
+.filters label[for="date-to"] {
+    font-weight: 600;
+    color: #333;
+    margin-right: 8px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.filters label[for="date-from"],
+.filters input#date-from,
+.filters label[for="date-to"],
+.filters input#date-to {
+    vertical-align: middle;
+}
+
+.filters label[for="date-to"],
+.filters input#date-to {
+    margin-left: 15px;
+}
+
+@media (max-width: 600px) {
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filters label[for="date-from"],
+    .filters input#date-from,
+    .filters label[for="date-to"],
+    .filters input#date-to {
+        display: block;
+        margin: 0 0 10px 0 !important;
+        width: 100%;
+        min-width: auto;
     }
 }

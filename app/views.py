@@ -6,39 +6,50 @@ from django.contrib.auth.forms import UserCreationForm
 from app.forms import CashFlowForm
 from app.models import CashFlow, Category, Status, Subcategory, Type
 
+from django.utils.dateparse import parse_date
+
 @login_required
 def index(request):
     user = request.user
-
-    filters = {'user': user}
 
     selected_type_id = request.GET.get('type')
     selected_category_id = request.GET.get('category')
     selected_subcategory_id = request.GET.get('subcategory')
     selected_status_id = request.GET.get('status')
 
-    types = Type.objects.all()
+    date_from_str = request.GET.get('date_from')
+    date_to_str = request.GET.get('date_to')
+
+    filters = {'user': user}
 
     if selected_type_id and selected_type_id != 'all':
-        categories = Category.objects.filter(type_id=selected_type_id)
         filters['subcategory__category__type_id'] = selected_type_id
-    else:
-        categories = Category.objects.all()
 
     if selected_category_id and selected_category_id != 'all':
-        subcategories = Subcategory.objects.filter(category_id=selected_category_id)
         filters['subcategory__category_id'] = selected_category_id
-    else:
-        subcategories = Subcategory.objects.all()
 
     if selected_subcategory_id and selected_subcategory_id != 'all':
         filters['subcategory_id'] = selected_subcategory_id
-    
-    statuses = Status.objects.all()
+
     if selected_status_id and selected_status_id != 'all':
         filters['status_id'] = selected_status_id
 
+    if date_from_str:
+        date_from = parse_date(date_from_str)
+        if date_from:
+            filters['created_at__gte'] = date_from
+
+    if date_to_str:
+        date_to = parse_date(date_to_str)
+        if date_to:
+            filters['created_at__lte'] = date_to
+
     cashflows = CashFlow.objects.filter(**filters)
+
+    types = Type.objects.all()
+    categories = Category.objects.filter(type_id=selected_type_id) if selected_type_id and selected_type_id != 'all' else Category.objects.all()
+    subcategories = Subcategory.objects.filter(category_id=selected_category_id) if selected_category_id and selected_category_id != 'all' else Subcategory.objects.all()
+    statuses = Status.objects.all()
 
     context = {
         'types': types,
@@ -51,10 +62,13 @@ def index(request):
         'selected_category_id': selected_category_id or 'all',
         'selected_subcategory_id': selected_subcategory_id or 'all',
         'selected_status_id': selected_status_id or 'all',
+
+        'date_from': date_from_str or '',
+        'date_to': date_to_str or '',
     }
 
-    user_cashflows = CashFlow.objects.filter(user=request.user)
     return render(request, 'app/index.html', context)
+
 
 def register(request):
     if request.method == 'POST':
