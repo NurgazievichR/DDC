@@ -1,16 +1,11 @@
-{% extends 'app/base.html' %}
-{% load static %}
-
-{% block title %}Добавить запись{% endblock %}
-
-{% block content %}
+{% extends 'app/base.html' %} {% load static %} {% block title %}Добавить
+запись{% endblock %} {% block content %}
 <div class="add-container">
-    <h2>Добавить запись</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Сохранить</button>
-    </form>
-    <p><a href="{% url 'index' %}">Назад к списку</a></p>
+  <h2>Добавить запись</h2>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+  </form>
+  <p><a href="{% url 'index' %}">Назад к списку</a></p>
 </div>
 {% endblock %}

@@ -1,48 +1,88 @@
-{% extends 'app/base.html' %}
-{% load static %}
-
-{% block title %}Редактирование записи - CashFlow{% endblock %}
-
-{% block content %}
+{% extends 'app/base.html' %} {% load static %} {% block title %}Редактирование
+записи - CashFlow{% endblock %} {% block content %}
 <div class="cashflow-detail-container">
-    <h2>Редактирование финансовой записи</h2>
+  <h2>Редактирование финансовой записи</h2>
 
-    <form method="post" class="cashflow-edit-form">
-        {% csrf_token %}
-        <label for="id_created_at">Дата создания:</label>
-        <input type="date" id="id_created_at" name="created_at" value="{{ cashflow.created_at }}" readonly />
-    
-        <label for="id_type">Тип:</label>
-        <input type="text" id="id_type" value="{{ cashflow.subcategory.category.type.title }}" readonly />
-    
-        <label for="id_category">Категория:</label>
-        <input type="text" id="id_category" value="{{ cashflow.subcategory.category.title }}" readonly />
-    
-        <label for="id_subcategory">Подкатегория:</label>
-        <select id="id_subcategory" name="subcategory">
-            {% for sub in subcategories %}
-                <option value="{{ sub.id }}" {% if sub.id == cashflow.subcategory.id %}selected{% endif %}>{{ sub.title }}</option>
-            {% endfor %}
-        </select>
-    
-        <label for="id_status">Статус:</label>
-        <select id="id_status" name="status">
-            {% for st in statuses %}
-                <option value="{{ st.id }}" {% if st.id == cashflow.status.id %}selected{% endif %}>{{ st.title }}</option>
-            {% endfor %}
-        </select>
-    
-        <label for="id_amount">Сумма:</label>
-        <input type="number" id="id_amount" name="amount" value="{{ cashflow.amount }}" step="0.01" required />
-    
-        <label for="id_comment">Комментарий:</label>
-        <textarea id="id_comment" name="comment">{{ cashflow.comment }}</textarea>
-    
-        <div class="form-buttons">
-            <button type="submit">Сохранить</button>
-            <a href="{% url 'cashflow_detail' cashflow.pk %}">Отмена</a>
-        </div>
-    </form>
-    
+  <form method="post" class="cashflow-edit-form">
+    {% csrf_token %}
+    <label for="id_created_at">Дата создания:</label>
+    <input
+      type="date"
+      id="id_created_at"
+      name="created_at"
+      value="{{ cashflow.created_at }}"
+      readonly
+    />
+
+    <label for="id_type">Тип:</label>
+    <input
+      type="text"
+      id="id_type"
+      value="{{ cashflow.subcategory.category.type.title }}"
+      readonly
+    />
+
+    <label for="id_category">Категория:</label>
+    <input
+      type="text"
+      id="id_category"
+      value="{{ cashflow.subcategory.category.title }}"
+      readonly
+    />
+
+    <label for="id_subcategory">Подкатегория:</label>
+    <select id="id_subcategory" name="subcategory">
+      {% for sub in subcategories %}
+      <option
+        value="{{ sub.id }}"
+        {%
+        if
+        sub.id=""
+        ="cashflow.subcategory.id"
+        %}selected{%
+        endif
+        %}
+      >
+        {{ sub.title }}
+      </option>
+      {% endfor %}
+    </select>
+
+    <label for="id_status">Статус:</label>
+    <select id="id_status" name="status">
+      {% for st in statuses %}
+      <option
+        value="{{ st.id }}"
+        {%
+        if
+        st.id=""
+        ="cashflow.status.id"
+        %}selected{%
+        endif
+        %}
+      >
+        {{ st.title }}
+      </option>
+      {% endfor %}
+    </select>
+
+    <label for="id_amount">Сумма:</label>
+    <input
+      type="number"
+      id="id_amount"
+      name="amount"
+      value="{{ cashflow.amount }}"
+      step="0.01"
+      required
+    />
+
+    <label for="id_comment">Комментарий:</label>
+    <textarea id="id_comment" name="comment">{{ cashflow.comment }}</textarea>
+
+    <div class="form-buttons">
+      <button type="submit">Сохранить</button>
+      <a href="{% url 'cashflow_detail' cashflow.pk %}">Отмена</a>
+    </div>
+  </form>
 </div>
 {% endblock %}

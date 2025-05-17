@@ -1,10 +1,10 @@
 <header class="main-header">
-    <h1>💰 CashFlow</h1>
-    <nav class="nav-buttons">
-        <a href="/add/">Добавить</a>
-        <form action="{% url 'logout' %}" method="post" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit" class="nav-button">Выйти</button>
-        </form>
-    </nav>
+  <h1>💰 CashFlow</h1>
+  <nav class="nav-buttons">
+    <a href="/add/">Добавить</a>
+    <form action="{% url 'logout' %}" method="post" style="display: inline">
+      {% csrf_token %}
+      <button type="submit" class="nav-button">Выйти</button>
+    </form>
+  </nav>
 </header>

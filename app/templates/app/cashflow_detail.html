@@ -1,46 +1,46 @@
-{% extends 'app/base.html' %}
-{% load static %}
-
-{% block title %}Детали записи - CashFlow{% endblock %}
-
-{% block content %}
+{% extends 'app/base.html' %} {% load static %} {% block title %}Детали записи -
+CashFlow{% endblock %} {% block content %}
 <div class="cashflow-detail-container">
-    <h2>Детали финансовой записи</h2>
+  <h2>Детали финансовой записи</h2>
 
-    <div class="cashflow-detail-card">
-        <div class="field-row">
-            <span class="field-label">Дата создания:</span>
-            <span class="field-value">{{ cashflow.created_at }}</span>
-        </div>
-        <div class="field-row">
-            <span class="field-label">Тип:</span>
-            <span class="field-value">{{ cashflow.subcategory.category.type.title }}</span>
-        </div>
-        <div class="field-row">
-            <span class="field-label">Категория:</span>
-            <span class="field-value">{{ cashflow.subcategory.category.title }}</span>
-        </div>
-        <div class="field-row">
-            <span class="field-label">Подкатегория:</span>
-            <span class="field-value">{{ cashflow.subcategory.title }}</span>
-        </div>
-        <div class="field-row">
-            <span class="field-label">Статус:</span>
-            <span class="field-value">{{ cashflow.status.title }}</span>
-        </div>
-        <div class="field-row">
-            <span class="field-label">Сумма:</span>
-            <span class="field-value">{{ cashflow.amount }} ₽</span>
-        </div>
-        <div class="field-row">
-            <span class="field-label">Комментарий:</span>
-            <span class="field-value">{{ cashflow.comment|default:"—" }}</span>
-        </div>
-
-        <div class="button-row">
-            <a href="{% url 'index' %}" class="btn btn-back">Назад к списку</a>
-            <a href="{% url 'cashflow_edit' cashflow.pk %}" class="btn btn-edit">Редактировать</a>
-        </div>
+  <div class="cashflow-detail-card">
+    <div class="field-row">
+      <span class="field-label">Дата создания:</span>
+      <span class="field-value">{{ cashflow.created_at }}</span>
     </div>
+    <div class="field-row">
+      <span class="field-label">Тип:</span>
+      <span class="field-value"
+        >{{ cashflow.subcategory.category.type.title }}</span
+      >
+    </div>
+    <div class="field-row">
+      <span class="field-label">Категория:</span>
+      <span class="field-value">{{ cashflow.subcategory.category.title }}</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Подкатегория:</span>
+      <span class="field-value">{{ cashflow.subcategory.title }}</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Статус:</span>
+      <span class="field-value">{{ cashflow.status.title }}</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Сумма:</span>
+      <span class="field-value">{{ cashflow.amount }} ₽</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Комментарий:</span>
+      <span class="field-value">{{ cashflow.comment|default:"—" }}</span>
+    </div>
+
+    <div class="button-row">
+      <a href="{% url 'index' %}" class="btn btn-back">Назад к списку</a>
+      <a href="{% url 'cashflow_edit' cashflow.pk %}" class="btn btn-edit"
+        >Редактировать</a
+      >
+    </div>
+  </div>
 </div>
 {% endblock %}

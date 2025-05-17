@@ -1,16 +1,11 @@
-{% extends 'app/base.html' %}
-{% load static %}
-
-{% block title %}Вход{% endblock %}
-
-{% block content %}
+{% extends 'app/base.html' %} {% load static %} {% block title %}Вход{% endblock
+%} {% block content %}
 <div class="login-container">
-    <h2>Вход</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Войти</button>
-    </form>
-    <p>Нет аккаунта? <a href="{% url 'register' %}">Создать</a></p>
+  <h2>Вход</h2>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit">Войти</button>
+  </form>
+  <p>Нет аккаунта? <a href="{% url 'register' %}">Создать</a></p>
 </div>
 {% endblock %}
